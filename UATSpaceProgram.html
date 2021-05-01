@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--file creator: A1C Le, Anna 
+         annle@uat.edu
+         CSC102 Spring 2021 Online 3-->
+
+<!--casino assignment
+title: The Gambling Timelord
+scene: There once was a madman with a blue police box. This madman was called The Doctor. The Doctor would travel 
+time and space with this blue box. On their way to Earth, they stumble along this casino on Pluto. The aliens would 
+make humans believe that pluto wasn't a planet anymore so they could build a casino there. Aliens from all over, 
+from Kypton to Asgard, who travel light years just to visit. The Doctor was escaping their past and needed an escape.
+They stumble upon this hidden gem on Pluto called the Lost Casino. The Doctor decided to play a game of Craps, and the
+next thing you know it, The Doctor had been playing nonstop for months. Would the Doctor stop playing before they bet their
+precious blue box away to the Council of Ricks in exchange for a Morty?
+
+-->
+<html>
+
+<head>
+    <script src="code.js"> </script>
+    <script src="dataLoader-1"> </script>
+    <!-- this is a test of the comment -->
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <title>
+            UAT Space Program
+        </title>
+
+</head>
+<script>
+    // this is a Javascipt comment /
+</script>
+
+<body>
+    <!-- needed for dom-->
+    <script>
+        //set date and time in real time
+        var theTime = new Date();
+        //for tempo of the time
+        var tempTime = new Date();
+        //interval for time
+        var time_interval = 5000;
+        //iteration
+        var last_iteration = 0;
+        //running is true
+        var running = true;
+        //index equals 0
+        var index = 0;
+        //set tiemr
+        var timer;
+
+        //to get data from dataloader-1
+        var data = getData();
+
+        //display time
+        function updateDisplay(){
+            theTime = new Date();
+
+            //fill in the table
+            var timeRead = data[index].time_seconds;
+            if(timeRead >= 10){
+                //data for seconds
+                document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds, "seconds");
+                //data for latitude
+                document.getElementById("data").rows["latitude"].innerHTML = dataRow("Latitude", data[index].latitude, "latitude");
+                //data for longitude
+                document.getElementById("data").rows["longitude"].innerHTML = dataRow("Longitude", data[index].longitude, "longitude");
+                //data for gps altitude
+                document.getElementById("data").rows["gps_altitude"].innerHTML = dataRow("GPS Altitude", data[index].gps_altitude, "gps altitude");
+                //data for bmp altitude
+                document.getElementById("data").rows["bmpSensor_altitude"].innerHTML = dataRow("BMP Sensor Altitude", data[index].bmpSensor_altitude, "bmpSesnor altitude");
+                //data for bmp pressure
+                document.getElementById("data").rows["bmpSensor_pressure"].innerHTML = dataRow("BMP Sensor Pressure", data[index].bmpSensor_pressure, "bmpSensor pressure");
+                //data for bmp temp
+                document.getElementById("data").rows["bmpSensor_temp"].innerHTML = dataRow("BMP Sensor Temperature", data[index].bmpSensor_temp, "bmpSensor temp");
+                //data for dig temp
+                document.getElementById("data").rows["digSensor_temp"].innerHTML = dataRow("Digital Sensor temperature", data[index].digSensor_temp, "digSensor temp");
+                //data for css temp
+                document.getElementById("data").rows["cssSensor_temp"].innerHTML = dataRow("CSS Sensor Tenperature", data[index].cssSensor_temp, "cssSensor temp");
+                //data for css ec02
+                document.getElementById("data").rows["cssSensor_eC02"].innerHTML = dataRow("CSS Sensor eC02", data[index].cssSensor_eC02, "cssSensor eC02");
+                //data for css tvoc
+                document.getElementById("data").rows["cssSensor_TVOC"].innerHTML = dataRow("CSS Sensor TVOC", data[index].cssSensor_TVOC, "cssSensor tvoc");
+                //data for uv
+                document.getElementById("data").rows["UV"].innerHTML = dataRow("UV", data[index].UV, "uv");
+                //data for accelx
+                document.getElementById("data").rows["accelX"].innerHTML = dataRow("AccelX", data[index].accelX, "accelx");
+                //data for accely
+                document.getElementById("data").rows["accelY"].innerHTML = dataRow("AccelY", data[index].accelY, "accely");
+                //data for accelz
+                document.getElementById("data").rows["accelZ"].innerHTML = dataRow("AccelZ", data[index].accelZ, "accelz");
+                //data for magneticx
+                document.getElementById("data").rows["magneticX"].innerHTML = dataRow("MagneticX", data[index].magneticX, "magneticx");
+                //data for magneticy
+                document.getElementById("data").rows["magneticY"].innerHTML = dataRow("MagneticY", data[index].magneticY, "magnneticy");
+                //data for magneticz
+                document.getElementById("data").rows["magneticZ"].innerHTML = dataRow("MagneticZ", data[index].magneticZ, "magneticz");
+                //data for gyrox
+                document.getElementById("data").rows["gyroX"].innerHTML = dataRow("GyroX", data[index].gyroX, "gyrox");
+                //data for gyroy
+                document.getElementById("data").rows["gyroY"].innerHTML = dataRow("GyroY", data[index].gyroY, "gyroy");
+                //data for gyroz
+                document.getElementById("data").rows["gyroZ"].innerHTML = dataRow("GyroZ", data[index].gyroZ, "gyroz");
+            }
+            //add to index
+            if(index < 500){
+                index++;
+            //if 500 then equal 0
+            }else{
+                index = 0;
+            }
+        }
+    </script>
+    <!-- a table to put h1 and picture on the same line-->
+    <table>
+        <td> <img src="UATspaceLogo.jpg"> </td>
+        <td> <h1> UAT Space Program </h1></td>
+    </table>
+    <!-- create table-->
+    <table border="2" id="data" width="70%" class="maintable">
+        <!-- how to change size of the column-->
+        <col style="width: 35%;">
+        <col style="width: 35%;">
+        <!-- header for table-->
+        <thead>
+            <tr style="font-family: fantasy;">
+                <th align="left"> Data Type </th>
+                <th align="left"> Reading </th>
+            </tr>
+        </thead>
+        <!-- body for the table which has all the info-->
+        <tbody>
+            <!-- info for time-->
+            <tr id="seconds"> </tr>
+            <!-- info for latitude-->
+            <tr id="latitude"> </tr>
+            <!-- info for longtitude-->
+            <tr id="longitude"> </tr>
+            <!-- info for gps-->
+            <tr id="gps_altitude"> </tr>
+            <!-- info for bmp altitude-->
+            <tr id="bmpsensor_altitude"> </tr>
+            <!-- info for bmp pressure-->
+            <tr id="bmpsensor_pressure"> </tr>
+            <!-- info for bmp temp-->
+            <tr id="bmpsensor_temp"> </tr>
+            <!-- info for css temp-->
+            <tr id="csssensor_temp"> </tr>
+            <!-- info for css ec02-->
+            <tr id="csssensor__eC02">  </tr>
+            <!-- info for css tvoc-->
+            <tr id="csssensor_tvoc">  </tr>
+            <!-- info for uv-->
+            <tr id="uv"> </tr>
+            <!-- info for accel x-->
+            <tr id="accelx"> </tr>
+            <!-- info for accel y-->
+            <tr id="accely"> </tr>
+            <!-- info for accel z-->
+            <tr id="accelz"> </tr>
+            <!-- info for magnetic x-->
+            <tr id="magneticx"> </tr>
+            <!-- info for magnetic y-->
+            <tr id="magneticy"> </tr>
+            <!-- info for magnetic z-->
+            <tr id="magneticz"> </tr>
+            <!-- info for gyro x-->
+            <tr id="gyrox"> </tr>
+            <!-- info for gyro y-->
+            <tr id="gyroy"> </tr>
+            <!-- info for gyro z-->
+            <tr id="gyroz"> </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <!-- button for start-->
+    <button class="button" id="startbutton" onclick="start();"> start</button>
+    <!-- button for stop--> 
+    <button class="button" id="stopbutton" onclick="stop();" class="button"> stop</button>
+    <br>
+    <!-- button for sound-->
+    <button class="button" onclick="playstation();"> Play Sound </button> <br>
+    <!-- button for space oddity-->
+    <button class="button" onclick="playspaceoddity();"> Play Bowie </button> <br>
+
+    <br>
+    <br>
+    <!-- function for countdown-->
+    <p id="countdowntimer">starting countdown here...</p>
+    <br>
+    <!-- button to start timer-->
+    <button class="button" onclick="start();">start</button>
+    <!-- button to stop timer-->
+    <button class="button" onclick="stop();">stop</button>
+    <br>
+    <br>
+    <!-- function for craps game-->
+    <h3 id="crapsresults"> results of the craps round </h3>
+    <br>
+    <!-- function for die 1-->
+    Die1 is: <div id="die1Res"> needs to be rolled </div><br>
+    <!-- function for die 2-->
+    Die2 is: <div id="die2Res"> needs to be rolled </div><br>
+    <!-- button for craps game-->
+    <button class="largebutton" onclick="playCraps();">play craps here! </button>
+    <br>
+    <br>
+    <br>
+    <!-- function for sandbox display-->
+    <div id="sandboxDisplay">Sandbox Display</div>
+    <br>
+    <!-- button for sandbox display-->
+    <button class="sandbutton" onclick="runSandbox();">Try it!</button>
+</body>
+
+
+</html>

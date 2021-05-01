@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<!--this is the login html page
+by Anna Le
+annle@uat.edu
+for CSC102 SP2021 WK 3-1-->
+<head>
+    <!-- add source-->
+    <script src="loginCode.js"></script>
+    <title>
+        <!-- title for login-->
+        UATSpace login
+    </title>
+</head>
+
+<body>
+    <h1>
+        <!-- welcome message-->
+        Welcome to UATSpace login page
+    </h1>
+    <!-- state status of login-->
+    <p id="loginStatus">
+        Status of login...
+    </p>
+    <br>
+    <!-- for identification-->
+    <form id="creditSubmit" onsubmit="return false">
+        <!-- first name-->
+    first name:         <input type="text" id="fName"/><br>
+    <!-- last name-->
+    last name:         <input type="text" id="lName"/><br>
+    <!-- badge number-->
+    badge number:      <input type="number" id="badgeID"/><br>
+    <!-- check creds-->
+    <input type="submit" onclick="checkCreds();"/>
+</form>
+
+
+</body>
+
+
+</html>
